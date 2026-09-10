@@ -1,0 +1,569 @@
+Build a polished, functional, mobile-first web application called **InspectIQ**.
+
+### PROJECT
+
+InspectIQ is a multipurpose AI-assisted inspection, monitoring, and work-allocation platform.
+
+The application supports six domains:
+
+1. 🏫 School
+2. 🎓 College
+3. 🏗️ Construction
+4. 💡 Street Light
+5. 🚰 Drainage
+6. 🛣️ Road Safety
+
+The application must be software-only. Do NOT use Arduino, ESP32, Raspberry Pi, physical sensors, IoT devices, or hardware.
+
+### CRITICAL ARCHITECTURE
+
+Do NOT create six separate applications.
+
+Create ONE reusable application where the selected category dynamically changes:
+
+* dashboard title
+* issue types
+* inspection checklist
+* AI analysis categories
+* risk calculation
+* recommended worker/team type
+* sample data
+* reports
+
+After login, the user selects a category.
+
+For the selected category, provide THREE role-based dashboards:
+
+1. USER / CITIZEN DASHBOARD
+2. INSPECTOR DASHBOARD
+3. ALLOCATION & MONITORING DASHBOARD
+
+The same dashboard components must be reusable across all six categories.
+
+---
+
+# USER FLOW
+
+Login
+↓
+Select Domain
+↓
+Select Role
+↓
+Role-specific Dashboard
+↓
+Report/Inspect/Monitor
+↓
+AI-assisted analysis
+↓
+Risk score
+↓
+Incident
+↓
+Work allocation
+↓
+Resolution
+
+---
+
+# PAGE 1 — LOGIN
+
+Create a professional login screen.
+
+Brand:
+INSPECTIQ
+
+Tagline:
+"Smart Inspection. Faster Action. Safer Communities."
+
+Fields:
+
+* Email
+* Password
+
+Buttons:
+
+* Login
+* Demo Login
+
+For the prototype, Demo Login should work without real authentication.
+
+Allow demo role selection:
+
+* Citizen/User
+* Inspector
+* Admin/Allocator
+
+Do not require Firebase just to run the prototype.
+
+---
+
+# PAGE 2 — DOMAIN SELECTION
+
+After login, show:
+
+"SELECT INSPECTION DOMAIN"
+
+Six attractive cards:
+
+🏫 School
+🎓 College
+🏗️ Construction
+💡 Street Light
+🚰 Drainage
+🛣️ Road Safety
+
+Each card should have:
+
+* icon
+* name
+* short description
+* Select button
+
+Store the selected domain in application state/local storage.
+
+After selection, all dashboards must dynamically use that domain.
+
+---
+
+# PAGE 3 — USER/CITIZEN DASHBOARD
+
+Create a mobile-friendly dashboard.
+
+Show:
+
+* selected domain
+* reports submitted
+* open reports
+* resolved reports
+* recent reports
+
+Main button:
+"+ REPORT AN ISSUE"
+
+Report form:
+
+* Issue type dropdown
+* Photo upload
+* Description
+* Location
+* Use Current Location button
+* Submit Report
+
+Use browser geolocation when available.
+
+Automatically record:
+
+* latitude
+* longitude
+* date/time
+
+After submission show a success message and generate an incident ID.
+
+Example:
+INC-1024
+
+Allow the user to track:
+
+* Reported
+* Under Inspection
+* Verified
+* Assigned
+* In Progress
+* Resolved
+
+---
+
+# PAGE 4 — INSPECTOR DASHBOARD
+
+Create a professional inspection dashboard.
+
+Show statistics:
+
+* Pending Inspections
+* Today's Inspections
+* Critical Issues
+* Completed Inspections
+
+Show recent issues.
+
+Main button:
+"START INSPECTION"
+
+Inspection screen:
+
+* Site/location
+* Issue category
+* Photo upload/camera input
+* Checklist
+* Notes
+* Location
+* Date/time
+
+Create dynamic checklists based on the selected domain.
+
+### SCHOOL CHECKLIST
+
+* Structural condition
+* Emergency exit
+* Electrical safety
+* Stair/railing condition
+* Cleanliness/obstruction
+
+### COLLEGE CHECKLIST
+
+* Building condition
+* Emergency exits
+* Electrical safety
+* Laboratory safety
+* Stair/railing condition
+
+### CONSTRUCTION CHECKLIST
+
+* Helmet compliance
+* Safety vest
+* Safety harness
+* Fall hazard
+* Unsafe work area
+
+### STREET LIGHT CHECKLIST
+
+* Light working
+* Pole condition
+* Electrical enclosure
+* Wiring condition
+* Visibility
+
+### DRAINAGE CHECKLIST
+
+* Blockage
+* Overflow
+* Structural damage
+* Waste accumulation
+* Water flow
+
+### ROAD SAFETY CHECKLIST
+
+* Pothole
+* Road surface
+* Traffic sign
+* Road obstruction
+* Drain/shoulder condition
+
+---
+
+# AI ANALYSIS
+
+Create an AI service abstraction.
+
+The prototype must work WITHOUT an API key.
+
+Implement:
+
+1. Demo/mock AI analysis
+2. Clearly separated service so a real vision API can later be connected.
+
+When the inspector clicks "Analyze", show an analysis screen.
+
+The analysis should return structured results such as:
+
+{
+issueDetected,
+findings,
+confidence,
+severity,
+safetyScore,
+recommendation
+}
+
+Use realistic demo results based on the selected domain.
+
+DO NOT claim that the prototype trained its own AI model.
+
+Clearly indicate when demo analysis is being used.
+
+---
+
+# RISK SCORE
+
+Create a reusable risk scoring system.
+
+Score:
+80–100 = SAFE
+60–79 = WARNING
+0–59 = CRITICAL
+
+Show:
+
+* score
+* severity
+* detected findings
+* recommendation
+
+Use a visually attractive score indicator.
+
+---
+
+# INCIDENT CREATION
+
+After inspection, allow:
+
+"CREATE INCIDENT"
+
+Incident must contain:
+
+* Incident ID
+* Domain
+* Issue
+* Photo
+* Location
+* Date/time
+* Severity
+* Risk score
+* Recommendation
+* Status
+* Assigned team
+
+Initial status:
+"Verified"
+
+---
+
+# PAGE 5 — ALLOCATION & MONITORING DASHBOARD
+
+This is the main USP.
+
+Create a dashboard for administrators/allocators.
+
+Show:
+
+* Total incidents
+* Critical incidents
+* Pending allocation
+* In-progress work
+* Resolved work
+
+Show recent incidents with:
+
+* domain
+* issue
+* location
+* severity
+* status
+
+For every incident, show a "Find Best Team" button.
+
+Create a demo worker/team dataset with:
+
+* team name
+* specialization
+* location
+* availability
+* current workload
+
+Examples:
+
+* School Maintenance Team
+* Electrical Maintenance Team
+* Road Maintenance Team
+* Drainage Maintenance Team
+* Construction Safety Team
+
+The system should recommend a suitable team using:
+
+1. Category/skill match
+2. Availability
+3. Approximate distance
+4. Current workload
+
+Display:
+
+"RECOMMENDED TEAM"
+
+Team name
+Distance
+Availability
+Skill match
+Current workload
+
+Button:
+"ASSIGN WORK"
+
+After assignment:
+status = "Assigned"
+
+Allow status progression:
+Assigned → In Progress → Resolved
+
+---
+
+# REAL-TIME MONITORING
+
+Create a monitoring view that automatically updates the dashboard when incidents change.
+
+For the prototype, use local state/localStorage or an in-memory data layer.
+
+Do NOT let missing Firebase credentials break the application.
+
+Structure the data layer so Firebase/Firestore can be connected later.
+
+Show a "Live Monitoring" indicator.
+
+---
+
+# MAP / LOCATION
+
+Include a simple map-style monitoring section.
+
+If an external map API is unavailable, create a polished visual map placeholder using issue location markers/cards.
+
+Do NOT make the application depend on a paid map API.
+
+Show:
+🔴 Critical
+🟠 Warning
+🟢 Safe
+
+Allow filtering by:
+
+* All
+* School
+* College
+* Construction
+* Street Light
+* Drainage
+* Road Safety
+
+---
+
+# DOMAIN-SPECIFIC BEHAVIOR
+
+The selected domain must visibly affect the entire application.
+
+Example:
+
+If user selects ROAD SAFETY:
+
+* dashboard says ROAD SAFETY
+* issue types are road-related
+* checklist is road-related
+* AI demo results are road-related
+* recommended teams are road teams
+
+If user selects STREET LIGHT:
+
+* dashboard says STREET LIGHT
+* issue types are electrical/light related
+* checklist changes
+* AI demo results change
+* recommended team becomes electrical maintenance
+
+Do the same for all six domains.
+
+---
+
+# UI / UX
+
+Create a professional hackathon-quality interface.
+
+Requirements:
+
+* mobile-first
+* responsive desktop layout
+* sidebar on desktop
+* bottom navigation or compact navigation on mobile
+* clean cards
+* clear severity colors
+* modern typography
+* good spacing
+* accessible buttons
+* loading states
+* empty states
+* success/error notifications
+
+Use icons consistently.
+
+Avoid excessive animations.
+
+The app should look like a real product, not a basic student CRUD project.
+
+---
+
+# TECH STACK
+
+Use:
+
+* React
+* Vite
+* TypeScript if practical
+* React Router
+* reusable components
+* CSS or Tailwind CSS if already available
+
+Use localStorage for prototype persistence.
+
+Keep services separated:
+
+* domain configuration
+* AI analysis
+* risk scoring
+* incident management
+* team allocation
+
+Do not add unnecessary libraries.
+
+---
+
+# DEMO DATA
+
+Include realistic demo data for all six categories.
+
+Create enough data so dashboards don't look empty.
+
+Example incidents:
+
+* School: blocked emergency exit
+* College: damaged railing
+* Construction: missing helmet
+* Street Light: light not working
+* Drainage: blocked drain
+* Road Safety: pothole
+
+---
+
+# MOST IMPORTANT 4-HOUR REQUIREMENT
+
+Prioritize this complete working demo flow:
+
+LOGIN
+→ DOMAIN SELECTION
+→ USER DASHBOARD
+→ REPORT ISSUE
+→ INSPECTOR DASHBOARD
+→ INSPECTION
+→ PHOTO
+→ AI DEMO ANALYSIS
+→ RISK SCORE
+→ CREATE INCIDENT
+→ ALLOCATION DASHBOARD
+→ FIND NEAREST/SUITABLE TEAM
+→ ASSIGN
+→ CHANGE STATUS
+→ RESOLVED
+
+Everything else is secondary.
+
+Do NOT spend excessive time implementing advanced authentication, complex backend infrastructure, real-time databases, custom AI model training, or advanced maps.
+
+The application must run successfully in Replit.
+
+After generating the code:
+
+1. Install required dependencies.
+2. Run the application.
+3. Fix all build/runtime errors.
+4. Verify all routes.
+5. Verify the main demo flow.
+6. Make sure the application works without external API keys.
+
+Do not merely describe the application. Actually create the files and implement the working application.

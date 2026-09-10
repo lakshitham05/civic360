@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "InspectIQ"
+description = "A mobile-first AI-assisted inspection, incident allocation, and live monitoring platform for schools, colleges, construction, street lights, drainage, and road safety teams."
+version = "1.0.0"
+id = "artifacts/inspectiq"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21540
+
+[services.development]
+run = "pnpm --filter @workspace/inspectiq run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/inspectiq", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/inspectiq/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21540"
+BASE_PATH = "/"
