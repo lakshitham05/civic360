@@ -1,0 +1,457 @@
+Upgrade the existing InspectIQ application. Do NOT rebuild the project from scratch and do NOT remove the existing working Report Issue functionality.
+
+The goal is to make InspectIQ a unified multi-department inspection, complaint monitoring and resolution platform suitable for a Tamil Nadu government/public-service style hackathon prototype.
+
+CORE CONCEPT:
+
+Citizen reports a public problem → Department/category is identified → Inspector receives it → Inspection is performed → Risk/severity is assessed → Suitable team is recommended → Work is assigned → Citizen tracks the progress → Issue is resolved → Citizen provides feedback.
+
+1. DEPARTMENT SELECTION
+
+Create a dynamic Department/Service selection system.
+
+Add these major inspection-related departments/categories:
+
+* Roads & Highways
+* Electricity & Street Lighting
+* Water Supply
+* Drainage & Sanitation
+* School Education
+* Higher Education
+* Construction & Buildings
+* Public Health
+* Environment
+* Transport
+* Municipality / Local Body
+* Fire & Emergency Safety
+
+Do NOT create completely separate applications or dashboards for each department.
+
+Use one reusable architecture where the selected department dynamically changes:
+
+* problem categories
+* issue types
+* inspection checklist
+* recommended team
+* risk assessment
+* dashboard labels
+* sample data
+
+2. DEPARTMENT PROBLEM CATEGORIES
+
+Create realistic issue categories for each department.
+
+Examples:
+
+Roads & Highways:
+
+* Pothole
+* Damaged road
+* Missing traffic sign
+* Road obstruction
+* Damaged road shoulder
+
+Electricity & Street Lighting:
+
+* Street light not working
+* Damaged pole
+* Exposed wiring
+* Electrical enclosure issue
+
+Water Supply:
+
+* Water leakage
+* Broken pipeline
+* Water supply interruption
+* Contamination concern
+
+Drainage & Sanitation:
+
+* Drain blockage
+* Overflow
+* Waste accumulation
+* Damaged drainage structure
+
+School Education:
+
+* Building safety
+* Electrical safety
+* Toilet/sanitation issue
+* Stair/railing issue
+* Emergency exit issue
+
+Higher Education:
+
+* Building condition
+* Laboratory safety
+* Electrical safety
+* Emergency exit
+* Campus infrastructure
+
+Construction & Buildings:
+
+* Unsafe construction area
+* Structural concern
+* Fall hazard
+* Missing safety equipment
+* Unsafe work area
+
+Public Health:
+
+* Facility maintenance
+* Sanitation issue
+* Water/hygiene issue
+* Waste disposal issue
+
+Environment:
+
+* Waste dumping
+* Pollution concern
+* Drain contamination
+* Environmental hazard
+
+Transport:
+
+* Bus stop infrastructure
+* Road/transport safety
+* Damaged public transport facility
+* Obstruction
+
+Municipality / Local Body:
+
+* Public infrastructure damage
+* Waste collection issue
+* Street maintenance
+* Public facility issue
+
+Fire & Emergency Safety:
+
+* Blocked emergency exit
+* Fire safety equipment issue
+* Emergency access obstruction
+* Building fire-safety concern
+
+3. KEEP THE EXISTING REPORT ISSUE FEATURE
+
+The existing Report Issue button is already available.
+
+Do not remove or replace it.
+
+When a citizen submits an issue, store:
+
+* Incident ID
+* Department
+* Problem category
+* Description
+* Photo
+* Location
+* Timestamp
+* Current status
+* Severity/risk
+* Inspection status
+* Assigned team
+* Resolution status
+* Feedback
+
+Use localStorage/shared application state for the prototype so the same incident is visible across the dashboards.
+
+4. CITIZEN "MY COMPLAINTS" DASHBOARD
+
+Add a dedicated My Complaints / Track Issues section.
+
+The citizen should see all complaints they submitted.
+
+Each complaint card should show:
+
+Incident ID
+Department
+Problem
+Location
+Date
+Current status
+Severity
+Assigned team if available
+
+Add a "View Details" button.
+
+5. LIVE CASE TRACKING
+
+Create a visual timeline for each complaint.
+
+Example:
+
+Complaint Submitted
+↓
+Inspection Scheduled
+↓
+Inspection Active
+↓
+Inspection Completed
+↓
+Team Assigned
+↓
+Action In Progress
+↓
+Resolved
+↓
+Citizen Feedback
+
+Highlight the current stage.
+
+The citizen must be able to understand whether:
+
+* complaint is received
+* inspection is pending
+* inspection is currently active
+* inspection has completed
+* action has started
+* issue has been resolved
+
+6. INSPECTION ACTIVE STATUS
+
+When an inspector starts an inspection, change the incident status to:
+
+"Inspection Active"
+
+Show this status immediately in the citizen's tracking page.
+
+Display:
+
+🟢 Inspection Active
+
+Inspector can then:
+
+* view citizen report
+* view uploaded photo
+* view location
+* perform department-specific checklist
+* upload inspection photo
+* add notes
+* assess severity
+* complete inspection
+
+7. ALLOCATION & MONITORING
+
+After inspection is completed, show the incident in the Allocation & Monitoring dashboard.
+
+Display:
+
+Incident
+Department
+Issue
+Location
+Severity
+Inspection result
+Recommended team
+Team availability
+Current workload
+Assignment status
+
+Add:
+
+"Find Best Team"
+
+The system should recommend a suitable team based on:
+
+* department/skill
+* availability
+* approximate distance
+* workload
+
+Example:
+
+Road problem
+→ Road Maintenance Team
+
+Street light problem
+→ Electrical Maintenance Team
+
+School safety problem
+→ School Infrastructure Team
+
+8. WORK STATUS
+
+After assignment, support:
+
+Assigned
+↓
+Team Accepted
+↓
+Action In Progress
+↓
+Resolved
+
+Allow the inspector/admin to update the status.
+
+The citizen's tracking timeline must update accordingly.
+
+9. RESOLUTION
+
+When the team completes the work:
+
+Set status to:
+
+"Resolved"
+
+Show resolution information to the citizen.
+
+Include:
+
+* resolution date
+* responsible team
+* resolution note
+* optional resolution photo
+
+10. CITIZEN FEEDBACK
+
+After an incident becomes Resolved, show a Feedback section.
+
+Ask:
+
+"Was your issue resolved?"
+
+Buttons:
+
+* Yes
+* No
+
+Add a 1–5 star rating.
+
+Add a feedback text box.
+
+Example:
+"Please tell us about your experience."
+
+Submit Feedback.
+
+Store the feedback with the incident.
+
+Show a simple feedback summary in the Admin/Monitoring dashboard.
+
+11. ADMIN / MONITORING DASHBOARD
+
+Create summary statistics:
+
+Total Complaints
+Pending Inspection
+Inspection Active
+Inspections Completed
+Action In Progress
+Resolved
+Feedback Received
+
+Add filters:
+
+All Departments
+Roads
+Electricity
+Water
+Drainage
+Education
+Construction
+Health
+Environment
+Transport
+Municipality
+Fire Safety
+
+Also add severity filters:
+
+Safe
+Warning
+Critical
+
+12. MAP / LOCATION VIEW
+
+Keep the existing map/location concept.
+
+Show incident locations using a simple map-style interface if no external map API is configured.
+
+Show different incident markers based on severity.
+
+Do not spend time integrating Google Maps API unless it is already working.
+
+13. DEMO DATA
+
+Create realistic sample incidents from multiple departments so the dashboard looks populated during the hackathon demo.
+
+Example:
+
+INC-1001 | Roads | Pothole | Critical | Inspection Active
+
+INC-1002 | Street Lighting | Light Failure | Warning | Assigned
+
+INC-1003 | Drainage | Blockage | Critical | Action In Progress
+
+INC-1004 | School Education | Electrical Safety | Warning | Resolved
+
+INC-1005 | Water Supply | Pipeline Leakage | Warning | Inspection Scheduled
+
+14. IMPORTANT ARCHITECTURE
+
+Use reusable components and dynamic data.
+
+Do NOT create 12 completely separate applications.
+
+The same:
+
+* Citizen Dashboard
+* Inspector Dashboard
+* Allocation Dashboard
+* Tracking Page
+* Feedback system
+
+must work for every department.
+
+Only the department-specific data, categories, checklist, team recommendation and issue information should change.
+
+15. HACKATHON DEMO FLOW
+
+Make sure this exact flow works:
+
+Login
+→ Citizen Dashboard
+→ Select Roads & Highways
+→ Report Pothole
+→ Upload photo
+→ Add location
+→ Submit
+→ Incident ID generated
+→ Inspector Dashboard receives incident
+→ Inspector starts inspection
+→ Citizen sees "Inspection Active"
+→ Inspector completes checklist
+→ AI/demo analysis + risk score
+→ Allocation Dashboard
+→ Find Best Team
+→ Assign Road Maintenance Team
+→ Status becomes Action In Progress
+→ Mark Resolved
+→ Citizen sees Resolved
+→ Citizen gives rating and feedback
+
+16. UI
+
+Keep the existing polished UI.
+
+Make the application look like a serious government/public-service technology platform.
+
+Use:
+
+* clear cards
+* status badges
+* progress timeline
+* department icons
+* responsive layout
+* mobile-friendly citizen interface
+* desktop dashboard for inspectors/admins
+
+Do not add unnecessary complex features.
+
+MOST IMPORTANT:
+
+First make sure the complete Citizen → Inspector → Allocation → Resolution → Feedback flow works with shared localStorage/application state.
+
+Do not spend time on real authentication, Firebase, Google Maps, or a real AI model if they are not already configured.
+
+A working end-to-end prototype is more important than adding complicated technology.

@@ -10,10 +10,10 @@ export type AnalysisResult = {
   recommendation: string;
 };
 
-export function analyzeDemo(domainKey: string, issue: string): AnalysisResult {
+export function analyzeDemo(domainKey: string, issue: string, description = ''): AnalysisResult {
   const domain = getDomain(domainKey);
   const risk = riskForIssue(issue, domain.key);
-  const shift = issue.length % 4;
+   const shift = (issue.length + description.length) % 4;
   return {
     issueDetected: issue,
     findings: domain.findings.slice(0, 3),

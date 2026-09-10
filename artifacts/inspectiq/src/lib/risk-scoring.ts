@@ -6,8 +6,8 @@ export function scoreToSeverity(score: number): Severity {
   return 'CRITICAL';
 }
 
-export function riskForIssue(issue: string, domainKey: string): { score: number; severity: Severity } {
-  const seed = [...issue, ...domainKey].reduce((sum, character) => sum + character.charCodeAt(0), 0);
+export function riskForIssue(issue: string, domainKey: string, description = ''): { score: number; severity: Severity } {
+  const seed = [...issue, ...domainKey, ...description].reduce((sum, character) => sum + character.charCodeAt(0), 0);
   const score = 43 + (seed % 55);
   return { score, severity: scoreToSeverity(score) };
 }
