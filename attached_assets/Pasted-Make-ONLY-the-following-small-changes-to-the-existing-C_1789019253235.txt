@@ -1,0 +1,107 @@
+Make ONLY the following small changes to the existing Civic/InspectIQ application. DO NOT rebuild the application and DO NOT change or remove any existing functionality.
+
+1. APP NAME
+
+Change the application/web name everywhere from:
+
+InspectIQ
+
+to:
+
+Civic360
+
+Update visible branding, page title, navbar/sidebar branding and browser title where applicable.
+
+2. CITIZEN FEEDBACK
+
+Add a clearly visible **"Feedback"** section/button directly on the **Citizen/User Dashboard**.
+
+The citizen should be able to access Feedback from their dashboard without needing to search through another page.
+
+The Feedback section should show:
+
+* Resolved complaints that are eligible for feedback
+* Incident ID
+* Department
+* Issue
+* Resolution status
+* 1–5 star rating
+* Feedback text box
+* Submit Feedback button
+
+If there are no resolved complaints, show a friendly message such as:
+"No resolved complaints available for feedback."
+
+Keep the existing feedback functionality and simply make it easily accessible from the Citizen/User Dashboard.
+
+3. LANGUAGE
+
+Add a language switcher:
+
+English | தமிழ்
+
+The user should be able to switch the main visible interface between English and Tamil.
+
+At minimum, translate the important navigation and dashboard labels, including:
+
+* Dashboard
+* Report Issue
+* My Complaints
+* Track Complaint
+* Feedback
+* Department
+* Issue
+* Location
+* Status
+* Inspection
+* Allocation
+* Resolved
+* Submit
+* Logout
+* Login
+* Citizen/User
+* Inspector
+* Admin/Allocator
+
+Use natural Tamil translations and keep the existing English as the default language.
+
+Do not translate incident IDs, technical values, names, or department data unnecessarily.
+
+4. LOGIN / DEMO USER NAMES
+
+Change the existing demo/login role names as follows:
+
+Citizen/User → Madhumitha
+
+Inspector → Punitha Varshini
+
+Admin/Allocator → Gayathri
+
+These names should be visible wherever the corresponding demo user/role is displayed.
+
+Do NOT change the underlying role permissions or workflow.
+
+5. DO NOT CHANGE ANYTHING ELSE
+
+Keep exactly the existing:
+
+* Department system
+* Problem categories
+* Report Issue form
+* Inspector dashboard
+* Inspection workflow
+* AI/demo analysis
+* Risk scoring
+* Allocation dashboard
+* Team recommendation
+* Status tracking
+* Citizen complaint tracking
+* Resolution workflow
+* Existing UI design
+* Existing sample data
+* Existing routes
+* Existing functionality
+
+Only implement the five changes requested above.
+
+After making the changes, run the application and check that there are no build/runtime errors.
