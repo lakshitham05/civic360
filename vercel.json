@@ -1,10 +1,18 @@
 {
-  "buildCommand": "pnpm --filter @workspace/inspectiq run build",
-  "outputDirectory": "artifacts/inspectiq/dist",
-  "rewrites": [
+  "version": 2,
+  "builds": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "src": "artifacts/inspectiq/package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
