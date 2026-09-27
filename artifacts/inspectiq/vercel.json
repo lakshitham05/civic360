@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/artifacts/inspectiq/dist/$1" }
+  ]
+}
