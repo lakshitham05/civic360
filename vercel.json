@@ -1,0 +1,4 @@
+{
+  "buildCommand": "pnpm --filter @workspace/inspectiq run build",
+  "outputDirectory": "artifacts/inspectiq/dist"
+}
